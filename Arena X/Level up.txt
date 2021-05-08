@@ -1,0 +1,3 @@
+for i=1, 70 do
+game.ReplicatedStorage.LvlXP.NucleoLVLup:InvokeServer()
+end

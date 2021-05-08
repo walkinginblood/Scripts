@@ -1,0 +1,5 @@
+pcall(function()
+	game.Players.LocalPlayer.Character.god:Destroy()
+	game.Players.LocalPlayer.Character.HP:Destroy()
+	game.Players.LocalPlayer.Character.dodge:Destroy()
+end)
