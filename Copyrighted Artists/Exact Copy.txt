@@ -1,0 +1,14 @@
+-- Variable
+local player = game.Players.LocalPlayer
+
+-- Copy
+local clone = player.PlayerGui.ObserveDraw.Frame.Drawing:Clone()
+	
+-- Wait to draw
+repeat wait() until player.PlayerGui:FindFirstChild("CopyDraw")
+	
+-- Destroy old
+player.PlayerGui.CopyDraw.Frame.Drawing:Destroy()
+	
+-- Paste new
+clone.Parent = player.PlayerGui.CopyDraw.Frame

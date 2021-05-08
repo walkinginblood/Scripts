@@ -1,0 +1,33 @@
+-- TP Bypass (feel free to use for other shit)
+loadstring(game:HttpGetAsync("https://pastebin.com/raw/HTV1cAkb"))
+
+-- TP GUI - Library by wally
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/eWKgbdix", true))()
+local w = library:CreateWindow('another demon game')
+w:Section('Made by Megumu')
+local npcs = {}
+local stores = {}
+for i,v in pairs(workspace.chatnpcs:GetChildren()) do
+    table.insert(npcs, v.Name)
+end
+for i,v in pairs(workspace.Store:GetChildren()) do
+    table.insert(stores, v.Name)
+end
+w:Dropdown("npcs", {
+    location = _G;
+    flag = "memes";
+    list = npcs
+ }, function(new)
+    pcall(function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.chatnpcs[new].PrimaryPart.CFrame
+    end)
+end)
+w:Dropdown("items", {
+    location = _G;
+    flag = "memes";
+    list = stores
+ }, function(new)
+    pcall(function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Store[new].CFrame
+    end)
+end)

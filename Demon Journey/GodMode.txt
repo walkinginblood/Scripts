@@ -1,0 +1,34 @@
+local w = Window.new("GodMode!"..math.random(1,99))
+local toggle = w:AddElement("Checkbox")
+toggle.Label = "Enabled"
+toggle.State = false
+
+local player = game.Players.LocalPlayer
+player.CharacterAdded:Connect(function(char)
+	repeat wait(.25) until char:FindFirstChild("Effects")
+	char.Effects.ChildAdded:Connect(function(v)
+		game:GetService("RunService").RenderStepped:wait()
+		if v.Name == "InCombat" and toggle.State then
+			v:Destroy()
+		end
+	end)
+	char.ChildAdded:Connet(function(v)
+		game:GetService("RunService").RenderStepped:wait()
+		if v.Name == "RegenNullify" and toggle.State then
+			v:Destroy()
+		end
+	end)
+end)
+player.Character.Effects.ChildAdded:Connect(function(v)
+	game:GetService("RunService").RenderStepped:wait()
+	if v.Name == "InCombat" and toggle.State then
+		v:Destroy()
+	end
+end)
+player.Character.ChildAdded:Connect(function(v)
+	game:GetService("RunService").RenderStepped:wait()
+	if v.Name == "RegenNullify" and toggle.State then
+		v:Destroy()
+	end
+end)
+
