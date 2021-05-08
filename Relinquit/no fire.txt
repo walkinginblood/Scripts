@@ -1,0 +1,5 @@
+local emitter = game.Players.LocalPlayer.Character.HumanoidRootPart.Fire_Emitter
+local remote = game:GetService("Workspace").Live.Gaiadwelling101.CharacterHandler.Events.Input
+emitter:GetPropertyChangedSignal("Enabled"):Connect(function()
+    remote:FireServer("Dash", "S")
+end)

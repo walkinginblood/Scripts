@@ -1,0 +1,26 @@
+pcall(function()
+   local UIS = game:GetService("UserInputService")
+   local Player = game:GetService("Players").LocalPlayer
+   local Mouse = Player:GetMouse()
+   local t2
+   
+   UIS.InputBegan:Connect(function(i, t)
+       if i.KeyCode == Enum.KeyCode.X and not t then
+           local target = Mouse.Target
+           if target ~= nil and target.Parent:FindFirstChild("Humanoid") and not t then
+               t2 = true
+               if (Player.Character.Head.Position - target.Parent.Head.Position).Magnitude < 100  and t2 then
+                   while wait() do
+                       Player.Character.HumanoidRootPart.CFrame = target.Parent.HumanoidRootPart.CFrame * CFrame.new(0,0,5)
+                       if t2 == false then
+                           break
+                       end
+                   end
+               end
+           else
+               t2 = false
+               target = nil
+           end
+       end
+   end)
+end)

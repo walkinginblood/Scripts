@@ -1,0 +1,186 @@
+if not bind then loadstring(game:HttpGet'https://ic3w0lf.xyz/cloud/t/ABBVe6rcECIP1Aw04mm')(); end
+if not input then loadstring(game:HttpGet'https://ic3w0lf.xyz/cloud/t/FKyC0IcUfeS1TR')(); end
+    
+local player = game:GetService'Players'.LocalPlayer;
+local mouse = player:GetMouse();
+local camera = workspace.CurrentCamera;
+local runservice = game:GetService'RunService';
+local uis = game:GetService'UserInputService';
+
+local fly = true;
+local lsf = 0;
+local flySpeed = 150;
+local maxSpeed = 260;
+local disp;
+
+local gayGames = {
+    3016661674; -- rogue lineage checks falling humanoid state lmao
+    3541987450; -- rogue lineage uber world
+    2087070304; -- castle rock running sim
+};
+
+for i, v in ipairs(gayGames) do
+    gayGames[v] = true;
+    gayGames[i] = false;
+end
+
+local gay = gayGames[game.PlaceId];
+
+shared.sfls = script;
+
+if Drawing then
+    disp = shared.fdisp or Drawing.new'Text';
+    disp.Text = 'FlySpeed: ' .. flySpeed;
+    disp.Size = 18;
+    disp.Center = false;
+    disp.Outline = true;
+    disp.Visible = true;
+    disp.Color = Color3.new(1, 1, 1);
+    disp.Position = Vector2.new(150, 7);
+
+    shared.fdisp = disp;
+end
+
+function IsInZone(Object1, Object2, YCheck) -- broken 2 lazy 2 fix
+    if (typeof(Object1) ~= 'Instance' and typeof(Object1) ~= 'table') or (typeof(Object2) ~= 'Instance' and typeof(Object2) ~= 'table') then return 'NIGGER'; end
+    if YCheck ~= nil and typeof(YCheck) ~= 'boolean' then return end
+
+    YCheck = (YCheck ~= nil and YCheck or false);
+
+    local RYCheck = true;
+
+    local Object = Object1;
+    
+    local Positive = (Object2.CFrame * CFrame.new(Object2.Size.X / 2, Object2.Size.Y / 2, Object2.Size.Z / 2));
+    local Negative = (Object2.CFrame * CFrame.new(-Object2.Size.X / 2, -Object2.Size.Y / 2, -Object2.Size.Z / 2));
+
+    if YCheck then
+        RYCheck = (YCheck == true and
+            (Object.Position.Y > Positive.Y) and
+            (Object.Position.Y < Negative.Y));
+    end
+
+    -- print(1, (Object.Position.X < Positive.X), Object.Position.X, Positive.X)
+    -- print(2, (Object.Position.X > Negative.X), Object.Position.X, Negative.X)
+    -- print(3, (Object.Position.Z > Positive.Z), Object.Position.Z, Positive.Z)
+    -- print(4, (Object.Position.Z < Negative.Z), Object.Position.Z, Negative.Z)
+    -- print(5, RYCheck);
+
+    return (Object.Position.X < Positive.X) and
+        (Object.Position.X > Negative.X) and
+        (Object.Position.Z > Positive.Z) and
+        (Object.Position.Z < Negative.Z) and
+        (RYCheck);
+end
+
+function GetIndex(Table, Value)
+    for i, v in pairs(Table) do
+        if v == Value then
+            return i;
+        end
+    end
+
+    return -1;
+end
+
+local PartIgnore = {};
+
+function DisableClip(Part)
+    if Part:IsA'BasePart' and Part.CanCollide then
+        local Start = tick();
+        local OldTransparency = Part.Transparency;
+        
+        table.insert(PartIgnore, Part);
+
+        while tick() - Start < 300 and player.Character and player.Character:FindFirstChild'HumanoidRootPart' and not input.down.f4 do
+            -- if tick() - Start > 1 and not IsInZone(player.Character.HumanoidRootPart, Part, true) and not IsInZone({Position = camera.CFrame.p}, Part, true) then
+                -- break;
+            -- end
+            if not input.down.leftshift and not input.down.space then
+                break;
+            end
+
+            Part.CanCollide = false;
+            -- if not gay then Part.Transparency = 0.75; end
+            Part.Transparency = 0.75;
+
+            wait(1 / 8);
+        end
+
+        table.remove(PartIgnore, GetIndex(PartIgnore, Part));
+
+        Part.Transparency = OldTransparency;
+        Part.CanCollide = true;
+    end
+end
+
+local lastDC = 0;
+
+function UpdateUI()
+    if disp then -- too lazy to make a loop or some bullshit to update this text so i just made it update in here.
+        if tick() - lsf < 2.5 then
+            disp.Text = 'Fly ' .. (fly and 'On' or 'Off');
+        else
+            disp.Text = 'FlySpeed: ' .. flySpeed;
+        end
+        disp.Position = Vector2.new(150, tick() - lastDC < 5 and 7 or -100);
+    end
+end
+
+uis.InputChanged:Connect(function(Input)
+    if script ~= shared.sfls then return; end
+
+    if Input.UserInputType == Enum.UserInputType.MouseWheel then
+        if input.down.leftcontrol then
+            local inc = Input.Position.Z > 0 and 25 or -25;
+
+            flySpeed = math.clamp(flySpeed + (inc * (input.down.leftshift and 2 or 1)), 0, maxSpeed);
+            lastDC = tick();
+        end
+    end
+
+    UpdateUI();
+end);
+
+bind('f', function()
+    if input.down.leftcontrol then
+        fly = not fly;
+        lastDC = tick();
+        lsf = tick();
+        UpdateUI();
+    end
+end)
+
+local lastSpace = 0;
+
+bind_first('space', function()
+    if fly and tick() - lastSpace < 0.3 and player.Character and player.Character:FindFirstChild'HumanoidRootPart' and player.Character:FindFirstChildOfClass'Humanoid' then
+        local root = player.Character.HumanoidRootPart;
+        local hum = player.Character:FindFirstChildOfClass'Humanoid';
+        
+        while input.down.space and fly do
+            if not gay then hum.PlatformStand = true; end
+            local start = mouse.Hit.p;
+            local dir = (start - camera.CFrame.p);
+
+            root.Velocity = dir.unit * (math.random((flySpeed - 1) * 1000, (flySpeed + 2.5) * 1000) / 1000); -- adds random speed so the velocity doesn't always measure to a certain amount (prevents detection)
+
+            local ray = Ray.new(root.Position, dir.unit * 50);
+            local hit, pos = workspace:FindPartOnRayWithIgnoreList(ray, {player.Character, camera, unpack(PartIgnore)});
+
+            if hit and input.down.leftshift then
+                spawn(function() DisableClip(hit); end);
+            end
+
+            runservice.RenderStepped:wait();
+        end
+        
+        if not gay then
+            hum.PlatformStand = false;
+            root.Velocity = Vector3.new();
+            hum:SetStateEnabled(0, false);
+        end
+    end
+
+    lastSpace = tick();
+end)

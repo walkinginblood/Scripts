@@ -1,0 +1,1 @@
+game.ReplicatedStorage.Resources.Assets.Events.PlayerAppearance:FireServer("Gender", 3)

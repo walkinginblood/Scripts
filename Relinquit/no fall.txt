@@ -1,0 +1,13 @@
+remote = game:GetService("Workspace").Live.[game.Players.LocalPlayer.Name].CharacterHandler.Events.Fall
+local mt = getrawmetatable(game)
+local name_call = mt.__namecall
+
+setreadonly(mt, false)
+
+mt.__namecall = function(instance, ...)
+    if getnamecallmethod() == "FireServer" and instance == remote then
+        return 0
+    end
+    
+    return name_call(instance, ...)
+end
