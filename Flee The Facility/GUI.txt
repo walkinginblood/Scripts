@@ -1,0 +1,164 @@
+-- Objects
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local Frame_3 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local ESP = Instance.new("TextButton")
+local CLOSE = Instance.new("TextButton")
+local NOCLIP = Instance.new("TextButton")
+local FOG = Instance.new("TextButton")
+local CREDITS = Instance.new("TextBox")
+local mainopenframe = Instance.new("ImageButton")
+
+-- Properties
+
+ScreenGui.Parent = game.CoreGui
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0.282353, 0, 0.258824)
+Frame.Position = UDim2.new(0.234875441, 0, 0.110671937, 0)
+Frame.Size = UDim2.new(0, 476, 0, 271)
+Frame.Visible = false
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.new(0.564706, 0.541176, 0.666667)
+Frame_2.BackgroundTransparency = 0.60000002384186
+Frame_2.Size = UDim2.new(0, 476, 0, 273)
+Frame_2.SizeConstraint = Enum.SizeConstraint.RelativeXX
+
+Frame_3.Parent = Frame_2
+Frame_3.BackgroundColor3 = Color3.new(0.694118, 0.101961, 0.635294)
+Frame_3.BackgroundTransparency = 0.60000002384186
+Frame_3.Size = UDim2.new(0, 476, 0, 50)
+
+TextLabel.Parent = Frame_3
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Size = UDim2.new(0, 476, 0, 50)
+TextLabel.Font = Enum.Font.Bodoni
+TextLabel.FontSize = Enum.FontSize.Size14
+TextLabel.Text = "FLEE THE FACILITY GUI"
+TextLabel.TextColor3 = Color3.new(0.0823529, 1, 0.572549)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14
+TextLabel.TextWrapped = true
+
+ESP.Name = "ESP"
+ESP.Parent = Frame_2
+ESP.BackgroundColor3 = Color3.new(0, 0, 0)
+ESP.Position = UDim2.new(0.0630252063, 0, 0.241758257, 0)
+ESP.Size = UDim2.new(0, 416, 0, 50)
+ESP.Font = Enum.Font.Code
+ESP.FontSize = Enum.FontSize.Size14
+ESP.Text = "ESP"
+ESP.TextColor3 = Color3.new(0.0784314, 1, 0.462745)
+ESP.TextScaled = true
+ESP.TextSize = 14
+ESP.TextStrokeColor3 = Color3.new(0.333333, 0.333333, 0)
+ESP.TextWrapped = true
+
+CLOSE.Name = "CLOSE"
+CLOSE.Parent = Frame_2
+CLOSE.BackgroundColor3 = Color3.new(0.6, 0, 0)
+CLOSE.Position = UDim2.new(0.884453773, 0, 0.941391945, 0)
+CLOSE.Size = UDim2.new(0, 55, 0, 14)
+CLOSE.Font = Enum.Font.SourceSans
+CLOSE.FontSize = Enum.FontSize.Size14
+CLOSE.Text = ""
+CLOSE.TextSize = 14
+
+NOCLIP.Name = "NOCLIP"
+NOCLIP.Parent = Frame_2
+NOCLIP.BackgroundColor3 = Color3.new(0, 0, 0)
+NOCLIP.BorderColor3 = Color3.new(0, 0, 0)
+NOCLIP.Position = UDim2.new(0.0630252138, 0, 0.450549483, 0)
+NOCLIP.Size = UDim2.new(0, 416, 0, 50)
+NOCLIP.Font = Enum.Font.SourceSans
+NOCLIP.FontSize = Enum.FontSize.Size14
+NOCLIP.Text = "NOCLIP"
+NOCLIP.TextColor3 = Color3.new(0.0784314, 1, 0.462745)
+NOCLIP.TextScaled = true
+NOCLIP.TextSize = 14
+NOCLIP.TextStrokeColor3 = Color3.new(1, 0, 0)
+NOCLIP.TextWrapped = true
+
+FOG.Name = "FOG"
+FOG.Parent = Frame_2
+FOG.BackgroundColor3 = Color3.new(0, 0, 0)
+FOG.Position = UDim2.new(0.0630252138, 0, 0.655677676, 0)
+FOG.Size = UDim2.new(0, 416, 0, 50)
+FOG.Font = Enum.Font.SourceSans
+FOG.FontSize = Enum.FontSize.Size14
+FOG.Text = "Remove FOG"
+FOG.TextColor3 = Color3.new(0.0784314, 1, 0.462745)
+FOG.TextScaled = true
+FOG.TextSize = 14
+FOG.TextWrapped = true
+
+CREDITS.Name = "CREDITS"
+CREDITS.Parent = Frame_2
+CREDITS.BackgroundColor3 = Color3.new(1, 1, 1)
+CREDITS.BackgroundTransparency = 1
+CREDITS.BorderColor3 = Color3.new(1, 1, 1)
+CREDITS.BorderSizePixel = 0
+CREDITS.Position = UDim2.new(0.0630252138, 0, 0.915750921, 0)
+CREDITS.Size = UDim2.new(0, 189, 0, 21)
+CREDITS.Font = Enum.Font.Garamond
+CREDITS.FontSize = Enum.FontSize.Size24
+CREDITS.Text = "Megumu#8008"
+CREDITS.TextColor3 = Color3.new(0.0784314, 1, 0.462745)
+CREDITS.TextSize = 20
+
+mainopenframe.Name = "main open frame"
+mainopenframe.Parent = ScreenGui
+mainopenframe.BackgroundColor3 = Color3.new(1, 1, 1)
+mainopenframe.Position = UDim2.new(0, 0, 0.889328063, 0)
+mainopenframe.Size = UDim2.new(0, 100, 0, 56)
+mainopenframe.Image = "rbxgameasset://Images/Openxd"
+mainopenframe.ImageColor3 = Color3.new(0.333333, 0, 1)
+
+mainopenframe.MouseButton1Click:connect(function()
+	Frame.Visible = true
+end)
+
+CLOSE.MouseButton1Click:connect(function()
+	Frame.Visible = false
+end)
+
+ESP.MouseButton1Click:connect(function()
+		local name = "BillboardGui"
+local function Modify(BillboardGui)
+    BillboardGui.Enabled = true
+end
+
+local function recursive(obj)
+    for _, child in pairs(obj:GetChildren()) do
+        if (child.Name == name) then
+            Modify(child);
+        end
+        recursive(child);
+    end
+end
+recursive(workspace);
+end)
+
+game:GetService('RunService').Stepped:connect(function()
+	if noclip then
+		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+	end
+end)
+NOCLIP.MouseButton1Click:connect(function()
+	noclip = not noclip
+	if NOCLIP.Text == "NOCLIP" then
+		NOCLIP.Text = "DISABLE NOCLIP"
+	else
+		NOCLIP.Text = "NOCLIP"
+	end
+end)
+
+FOG.MouseButton1Click:connect(function()
+	game.Lighting.FogEnd = 100000
+	game.Lighting.FogStart = 100000
+end)

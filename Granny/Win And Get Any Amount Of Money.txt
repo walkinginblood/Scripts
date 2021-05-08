@@ -1,0 +1,4 @@
+Cash = 20000000
+local A_1 = [Cash]
+local Event = game:GetService("ReplicatedStorage").Events.Winner
+Event:FireServer(A_1)

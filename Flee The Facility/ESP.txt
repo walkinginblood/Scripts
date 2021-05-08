@@ -1,0 +1,219 @@
+players = true
+computers = true
+pods = true
+exitdoors = true
+doors = true
+vents = true
+
+
+
+--------------------------------------------------
+
+
+game.Lighting.FogEnd = 10000000
+
+if workspace:findFirstChild("ESP") then
+workspace.ESP:remove()
+end
+
+if workspace:findFirstChild("ESPComputer") then
+workspace.ESPComputer:remove()
+end
+
+if workspace:findFirstChild("ESPPod") then
+workspace.ESPPod:remove()
+end
+
+if workspace:findFirstChild("ESPExitDoor") then
+workspace.ESPExitDoor:remove()
+end
+
+if workspace:findFirstChild("ESPDoors") then
+workspace.ESPDoors:remove()
+end
+
+if workspace:findFirstChild("ESPVents") then
+workspace.ESPVents:remove()
+end
+
+
+function GetSizeOfObject(Obj)
+if Obj:IsA("BasePart") then
+return Obj.Size
+elseif Obj:IsA("Model") then
+return Obj:GetExtentsSize()
+end
+end
+
+local ESP = Instance.new("Folder",workspace)
+ESP.Name = "ESP"
+
+
+
+function CreateESPPart(BodyPart,r,g,b)
+local ESPPartparent = BodyPart
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(ESPPartparent) + Vector3.new(0.1, 0.1, 0.1)
+Box.Name = "ESPPart"
+Box.Adornee = ESPPartparent
+Box.Color3 = Color3.fromRGB(r,g,b)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.4
+Box.Parent = ESP
+if BodyPart.Parent.Name == game.Players.LocalPlayer.Name then
+Box:remove()
+spawn (function()
+while true do
+wait(0.1)
+if BodyPart ~= nil then
+Box:remove()
+end
+end
+end)
+end
+end
+
+
+local player = game.Players:GetChildren()
+for i =1, #player do
+local bodyparts = player[i].Character:GetChildren()
+for i =1, #bodyparts do
+if bodyparts[i].ClassName == "Part" then
+if bodyparts[i].Parent:findFirstChild("BeastPowers") then
+CreateESPPart(bodyparts[i],255,0,0)
+else
+CreateESPPart(bodyparts[i],170,170,255)
+end
+end
+end
+end
+
+
+local ESPPC = Instance.new("Folder",workspace)
+ESPPC.Name = "ESPComputer"
+
+local ESPPod = Instance.new("Folder",workspace)
+ESPPod.Name = "ESPPod"
+
+local ESPExitDoor = Instance.new("Folder",workspace)
+ESPExitDoor.Name = "ESPExitDoor"
+
+local ESPDoors = Instance.new("Folder",workspace)
+ESPDoors.Name = "ESPDoors"
+
+local ESPVents = Instance.new("Folder",workspace)
+ESPVents.Name = "ESPVents"
+
+
+local map = workspace:findFirstChild(tostring(game.ReplicatedStorage.CurrentMap.Value))
+local children = map:GetChildren()
+for i =1, #children do
+if children[i].Name == "ComputerTable" then
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(children[i].Screen) + Vector3.new(-0.5, -0.5, -0.5)
+Box.Name = "ESPPart"
+Box.Adornee = children[i].Screen
+spawn (function()
+while true do
+wait(0.1)
+Box.Color3 = children[i].Screen.Color
+end
+end)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.4
+Box.Parent = ESPPC
+end
+if children[i].Name == "FreezePod" then
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(children[i].BasePart) + Vector3.new(0.1, 5, 0.1)
+Box.Name = "ESPPart"
+Box.Adornee = children[i].BasePart
+Box.Color3 = Color3.fromRGB(0,0,255)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.8
+Box.Parent = ESPPod
+end
+if children[i].Name == "ExitDoor" then
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(children[i].ExitDoorTrigger) + Vector3.new(-1, 5, -1)
+Box.Name = "ESPPart"
+Box.Adornee = children[i].ExitDoorTrigger
+Box.Color3 = Color3.fromRGB(255,255,0)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.8
+Box.Parent = ESPExitDoor
+end
+if children[i].Name == "SingleDoor" then
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(children[i].Door.DoorBoard) + Vector3.new(0.1, 0.1, 0.1)
+Box.Name = "ESPPart"
+Box.Adornee = children[i].Door.DoorBoard
+Box.Color3 = Color3.fromRGB(204,142,105)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.8
+Box.Parent = ESPDoors
+end
+if children[i].Name == "DoubleDoor" then
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(children[i].DoorL.DoorBoard) + Vector3.new(0.1, 0.1, 0.1)
+Box.Name = "ESPPart"
+Box.Adornee = children[i].DoorL.DoorBoard
+Box.Color3 = Color3.fromRGB(204,142,105)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.8
+Box.Parent = ESPDoors
+end
+if children[i].Name == "DoubleDoor" then
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(children[i].DoorR.DoorBoard) + Vector3.new(0.1, 0.1, 0.1)
+Box.Name = "ESPPart"
+Box.Adornee = children[i].DoorR.DoorBoard
+Box.Color3 = Color3.fromRGB(204,142,105)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.8
+Box.Parent = ESPDoors
+end
+
+if children[i].Name == "AirVent" then
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = GetSizeOfObject(children[i].Part) + Vector3.new(4, 0.1, 4)
+Box.Name = "ESPPart"
+Box.Adornee = children[i].Part
+Box.Color3 = Color3.fromRGB(100,100,100)
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.8
+Box.Parent = ESPVents
+end
+end
+
+if players == false then
+workspace.ESP:remove()
+end
+
+if computers == false then
+workspace.ESPComputer:remove()
+end
+
+if pods == false then
+workspace.ESPPod:remove()
+end
+
+if exitdoors == false then
+workspace.ESPExitDoor:remove()
+end
+
+if doors == false then
+workspace.ESPDoors:remove()
+end
+
+if vents == false then
+workspace.ESPVents:remove()
+end

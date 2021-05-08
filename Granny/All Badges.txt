@@ -1,0 +1,6 @@
+game.ReplicatedStorage.Events.Badge:FireServer(1866085759)
+game.ReplicatedStorage.Events.Badge:FireServer(1866050915)
+game.ReplicatedStorage.Events.Badge:FireServer(1866066746)
+game.ReplicatedStorage.Events.Badge:FireServer(1867767796)
+game.ReplicatedStorage.Events.Badge:FireServer(2043875698)
+game.ReplicatedStorage.Events.Badge:FireServer(2043881344)

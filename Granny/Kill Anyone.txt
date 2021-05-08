@@ -1,0 +1,6 @@
+YOURNAME = "DeadSilentKitten"
+VICTIM = "izaaalenaaa"
+local A_1 = game:GetService("Players")[YOURNAME]
+local A_2 = game:GetService("Workspace")[VICTIM].Humanoid
+local Event = game:GetService("ReplicatedStorage").Events["G_Attack"]
+Event:FireServer(A_1, A_2)

@@ -1,0 +1,1 @@
+game.ReplicatedStorage.updateCollector:FireServer(2000000000)
