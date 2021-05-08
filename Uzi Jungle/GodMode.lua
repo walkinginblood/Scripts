@@ -1,0 +1,1 @@
+workspace.NETWORK["DAMAGE_PLAYER"]:FireServer(game.Players.LocalPlayer, -math.huge)

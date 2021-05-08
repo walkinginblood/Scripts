@@ -1,0 +1,8 @@
+while true do
+wait(.1)
+for i,v in pairs(game.Workspace.Towers:GetChildren()) do
+if v:FindFirstChild("Base") then
+v.Base:Destroy()
+end
+end
+end
