@@ -1,0 +1,900 @@
+--[[
+	GUI
+--]]
+pcall(function()
+    game.CoreGui["AUTO_QUEST"]:Remove()
+	game.Workspace["Base"]:Destroy()
+end)
+
+local GUI = Instance.new("ScreenGui")
+local HEADER = Instance.new("TextLabel")
+local FRAME = Instance.new("Frame")
+local QUESTFRAME = Instance.new("ScrollingFrame")
+local STATFRAME = Instance.new("ScrollingFrame")
+local TURNON = Instance.new("TextButton")
+local TURNOFF = Instance.new("TextButton")
+local QUEST = Instance.new("TextLabel")
+local EXPERIENCE = Instance.new("TextLabel")
+local CASH = Instance.new("TextLabel")
+local HEALTH = Instance.new("TextLabel")
+local STATUS = Instance.new("TextLabel")
+local CLASS = Instance.new("TextLabel")
+local CURRENTQUEST = Instance.new("TextLabel")
+local AUTOPOINTLABEL = Instance.new("TextLabel")
+local AUTOBOSSLABEL = Instance.new("TextLabel")
+local AUTOPRESTIGELABEL = Instance.new("TextLabel")
+local AUTOPKLABEL = Instance.new("TextLabel")
+local AUTOPOINTON = Instance.new("TextButton")
+local AUTOPOINTOFF = Instance.new("TextButton")
+local AUTOBOSSON = Instance.new("TextButton")
+local AUTOBOSSOFF = Instance.new("TextButton")
+local AUTOPRESTIGEON = Instance.new("TextButton")
+local AUTOPRESTIGEOFF = Instance.new("TextButton")
+local AUTOPKON = Instance.new("TextButton")
+local AUTOPKOFF = Instance.new("TextButton")
+
+local CASH1 = Instance.new("TextLabel")
+local CASH2 = Instance.new("TextLabel")
+local EXPERIENCE1 = Instance.new("TextLabel")
+local EXPERIENCE2 = Instance.new("TextLabel")
+local HEALTH1 = Instance.new("TextLabel")
+local HEALTH2 = Instance.new("TextLabel")
+local QUEST1 = Instance.new("TextButton")
+local QUEST2 = Instance.new("TextButton")
+
+local HEALTHSTAT = Instance.new("TextLabel")
+local STRENGTHSTAT = Instance.new("TextLabel")
+local LEVELSTAT = Instance.new("TextLabel")
+local SOULSSTAT = Instance.new("TextLabel")
+local CASHSTAT = Instance.new("TextLabel")
+local POINTSSTAT = Instance.new("TextLabel")
+local HEALTHLABEL = Instance.new("TextLabel")
+local STRENGTHLABEL = Instance.new("TextLabel")
+local LEVELLABEL = Instance.new("TextLabel")
+local SOULLABEL = Instance.new("TextLabel")
+local CASHLABEL = Instance.new("TextLabel")
+local POINTSLABEL = Instance.new("TextLabel")
+
+GUI.Parent = game.CoreGui
+GUI.Name = "AUTO_QUEST"
+
+FRAME.Parent = GUI
+FRAME.Name = "FRAME"
+FRAME.Active = true
+FRAME.Selectable = true
+FRAME.Draggable = true
+FRAME.BackgroundColor3 = Color3.new(255,255,255)
+FRAME.BackgroundTransparency = 0.2
+FRAME.BorderSizePixel = 0
+FRAME.Position = UDim2.new(0.5, -100,0.5, -75)
+FRAME.Size = UDim2.new(0, 200, 0, 175)
+
+HEADER.Parent = FRAME
+HEADER.Name = "AUTO QUEST"
+HEADER.BackgroundColor3 = Color3.new(255,255,255)
+HEADER.BackgroundTransparency = 0
+HEADER.BorderSizePixel = 0
+HEADER.Position = UDim2.new(0,-15,0,-20)
+HEADER.Size = UDim2.new(0,230,0,15)
+HEADER.Font = Enum.Font.SourceSansBold
+HEADER.Text = "AUTO QUEST"
+HEADER.TextSize = 14
+HEADER.TextStrokeTransparency = 1
+
+QUESTFRAME.Parent = FRAME
+QUESTFRAME.Name = "QUESTFRAME"
+QUESTFRAME.BackgroundColor3 = Color3.new(255,255,255)
+QUESTFRAME.BackgroundTransparency = 0
+QUESTFRAME.BorderSizePixel = 0
+QUESTFRAME.Position = UDim2.new(0,5,0,139)
+QUESTFRAME.Size = UDim2.new(0, 190, 0, 30)
+QUESTFRAME.BottomImage = "rbxassetid://540571263"
+QUESTFRAME.MidImage = "rbxassetid://540571263"
+QUESTFRAME.TopImage = "rbxassetid://540571263"
+QUESTFRAME.ScrollBarThickness = 5
+
+STATFRAME.Parent = FRAME
+STATFRAME.Name = "STATFRAME"
+STATFRAME.BackgroundColor3 = Color3.new(255,255,255)
+STATFRAME.BackgroundTransparency = 0
+STATFRAME.BorderSizePixel = 0
+STATFRAME.Position = UDim2.new(0,4,0,80)
+STATFRAME.Size = UDim2.new(0, 190, 0, 40)
+STATFRAME.BottomImage = "rbxassetid://540571263"
+STATFRAME.MidImage = "rbxassetid://540571263"
+STATFRAME.TopImage = "rbxassetid://540571263"
+STATFRAME.ScrollBarThickness = 5
+
+TURNON.Parent = FRAME
+TURNON.Name = "TURNON"
+TURNON.BackgroundColor3 = Color3.new(255,255,255)
+TURNON.BackgroundTransparency = 0.3
+TURNON.BorderSizePixel = 0
+TURNON.Position = UDim2.new(0, 5, 0, 25)
+TURNON.Size = UDim2.new(0, 190, 0, 15)
+TURNON.Font = Enum.Font.SourceSansSemibold
+TURNON.Text = "ENABLE AUTO QUEST"
+TURNON.TextStrokeTransparency = 1
+TURNON.TextSize = 14
+TURNON.Visible = false
+
+TURNOFF.Parent = FRAME
+TURNOFF.Name = "TURNOFF"
+TURNOFF.Visible = false
+TURNOFF.BackgroundColor3 = Color3.new(255,255,255)
+TURNOFF.BackgroundTransparency = 0.3
+TURNOFF.TextTransparency = 0
+TURNOFF.BorderSizePixel = 0
+TURNOFF.Position = UDim2.new(0, 5, 0, 25)
+TURNOFF.Size = UDim2.new(0, 190, 0, 15)
+TURNOFF.Font = Enum.Font.SourceSansSemibold
+TURNOFF.Text = "DISABLE AUTO QUEST"
+TURNOFF.TextStrokeTransparency = 1
+TURNOFF.TextSize = 14
+TURNOFF.Visible = false
+
+QUEST.Parent = FRAME
+QUEST.Name = "QUEST"
+QUEST.BackgroundColor3 = Color3.new(255,255,255)
+QUEST.BackgroundTransparency = 0
+QUEST.BorderSizePixel = 0
+QUEST.Position = UDim2.new(0, 5, 0, 129)
+QUEST.Size = UDim2.new(0, 100, 0, 10)
+QUEST.Font = Enum.Font.SourceSansLight
+QUEST.Text = "QUEST"
+QUEST.TextSize = 10
+QUEST.TextStrokeTransparency = 1
+
+EXPERIENCE.Parent = FRAME
+EXPERIENCE.Name = "EXPERIENCE"
+EXPERIENCE.BackgroundColor3 = Color3.new(255,255,255)
+EXPERIENCE.BackgroundTransparency = 0
+EXPERIENCE.BorderSizePixel = 0
+EXPERIENCE.Position = UDim2.new(0, 105, 0, 129)
+EXPERIENCE.Size = UDim2.new(0, 21, 0, 10)
+EXPERIENCE.Font = Enum.Font.SourceSansLight
+EXPERIENCE.Text = "EXP"
+EXPERIENCE.TextSize = 10
+EXPERIENCE.TextStrokeTransparency = 1
+
+CASH.Parent = FRAME
+CASH.Name = "CASH"
+CASH.BackgroundColor3 = Color3.new(255,255,255)
+CASH.BackgroundTransparency = 0
+CASH.BorderSizePixel = 0
+CASH.Position = UDim2.new(0, 126, 0, 129)
+CASH.Size = UDim2.new(0, 35, 0, 10)
+CASH.Font = Enum.Font.SourceSansLight
+CASH.Text = "CASH"
+CASH.TextSize = 10
+CASH.TextStrokeTransparency = 1
+
+HEALTH.Parent = FRAME
+HEALTH.Name = "HEALTH"
+HEALTH.BackgroundColor3 = Color3.new(255,255,255)
+HEALTH.BackgroundTransparency = 0
+HEALTH.BorderSizePixel = 0
+HEALTH.Position = UDim2.new(0, 158, 0, 129)
+HEALTH.Size = UDim2.new(0, 33, 0, 10)
+HEALTH.Font = Enum.Font.SourceSansLight
+HEALTH.Text = "HEALTH"
+HEALTH.TextSize = 10
+HEALTH.TextStrokeTransparency = 1
+
+STATUS.Parent = FRAME
+STATUS.Name = "STATUS"
+STATUS.BackgroundColor3 = Color3.new(255,255,255)
+STATUS.BackgroundTransparency = 0.3
+STATUS.BorderSizePixel = 0
+STATUS.Position = UDim2.new(0, 5, 0, 5)
+STATUS.Size = UDim2.new(0, 190, 0, 15)
+STATUS.Font = Enum.Font.SourceSansLight
+STATUS.Text = "AUTO QUEST STATUS : "
+STATUS.TextSize = 14
+STATUS.TextStrokeTransparency = 1
+
+CLASS.Parent = FRAME
+CLASS.Name = "CLASS"
+CLASS.BackgroundColor3 = Color3.new(255,2552,255)
+CLASS.BackgroundTransparency = 0
+CLASS.BorderSizePixel = 0
+CLASS.Position = UDim2.new(0, -5, 0, 45)
+CLASS.Size = UDim2.new(0, 210, 0, 15)
+CLASS.Font = Enum.Font.SourceSansSemibold
+CLASS.Text = "CURRENT CLASS : "
+CLASS.TextSize = 16
+CLASS.TextStrokeTransparency = 1
+
+CURRENTQUEST.Parent = FRAME
+CURRENTQUEST.Name = "CURRENTQUEST"
+CURRENTQUEST.BackgroundColor3 = Color3.new(255,255,255)
+CURRENTQUEST.BackgroundTransparency = 0.3
+CURRENTQUEST.BorderSizePixel = 0
+CURRENTQUEST.Position = UDim2.new(0, 5, 0, 65)
+CURRENTQUEST.Size = UDim2.new(0, 189, 0, 12)
+CURRENTQUEST.Font = Enum.Font.SourceSansLight
+CURRENTQUEST.Text = "CURRENT QUEST : "
+CURRENTQUEST.TextSize = 12
+CURRENTQUEST.TextStrokeTransparency = 1
+
+AUTOPOINTLABEL.Parent = FRAME
+AUTOPOINTLABEL.Name = "AUTOPOINTLABEL"
+AUTOPOINTLABEL.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPOINTLABEL.BorderSizePixel = 0
+AUTOPOINTLABEL.BackgroundTransparency = 0
+AUTOPOINTLABEL.Font = Enum.Font.SourceSansLight
+AUTOPOINTLABEL.TextSize = 12
+AUTOPOINTLABEL.Size = UDim2.new(0, 158, 0, 12)
+AUTOPOINTLABEL.Position = UDim2.new(0,0,1.034,0)
+AUTOPOINTLABEL.Text = "AUTO POINT"
+
+AUTOPOINTON.Parent = FRAME
+AUTOPOINTON.Name = "AUTOPOINTON"
+AUTOPOINTON.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPOINTON.BorderSizePixel = 0
+AUTOPOINTON.BackgroundTransparency = 0
+AUTOPOINTON.Font = Enum.Font.SourceSansSemibold
+AUTOPOINTON.TextSize = 12
+AUTOPOINTON.Size = UDim2.new(0, 42, 0, 12)
+AUTOPOINTON.Position = UDim2.new(0.79,0,1.034,0)
+AUTOPOINTON.Text = "ON"
+AUTOPOINTON.Visible = false
+
+AUTOPOINTOFF.Parent = FRAME
+AUTOPOINTOFF.Name = "AUTOPOINTOFF"
+AUTOPOINTOFF.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPOINTOFF.BorderSizePixel = 0
+AUTOPOINTOFF.BackgroundTransparency = 0
+AUTOPOINTOFF.Font = Enum.Font.SourceSansSemibold
+AUTOPOINTOFF.TextSize = 12
+AUTOPOINTOFF.Size = UDim2.new(0, 42, 0, 12)
+AUTOPOINTOFF.Position = UDim2.new(0.79,0,1.034,0)
+AUTOPOINTOFF.Text = "OFF"
+AUTOPOINTOFF.Visible = false
+
+AUTOBOSSLABEL.Parent = FRAME
+AUTOBOSSLABEL.Name = "AUTOBOSSLABEL"
+AUTOBOSSLABEL.BackgroundColor3 = Color3.new(255,255,255)
+AUTOBOSSLABEL.BorderSizePixel = 0
+AUTOBOSSLABEL.BackgroundTransparency = 0
+AUTOBOSSLABEL.Font = Enum.Font.SourceSansLight
+AUTOBOSSLABEL.TextSize = 12
+AUTOBOSSLABEL.Size = UDim2.new(0, 158, 0, 12)
+AUTOBOSSLABEL.Position = UDim2.new(0,0,1.137,0)
+AUTOBOSSLABEL.Text = "AUTO BOSS"
+
+AUTOBOSSON.Parent = FRAME
+AUTOBOSSON.Name = "AUTOBOSSON"
+AUTOBOSSON.BackgroundColor3 = Color3.new(255,255,255)
+AUTOBOSSON.BorderSizePixel = 0
+AUTOBOSSON.BackgroundTransparency = 0
+AUTOBOSSON.Font = Enum.Font.SourceSansSemibold
+AUTOBOSSON.TextSize = 12
+AUTOBOSSON.Size = UDim2.new(0, 42, 0, 12)
+AUTOBOSSON.Position = UDim2.new(0.79,0,1.137,0)
+AUTOBOSSON.Text = "ON"
+AUTOBOSSON.Visible = false
+
+AUTOBOSSOFF.Parent = FRAME
+AUTOBOSSOFF.Name = "AUTOBOSSOFF"
+AUTOBOSSOFF.BackgroundColor3 = Color3.new(255,255,255)
+AUTOBOSSOFF.BorderSizePixel = 0
+AUTOBOSSOFF.BackgroundTransparency = 0
+AUTOBOSSOFF.Font = Enum.Font.SourceSansSemibold
+AUTOBOSSOFF.TextSize = 12
+AUTOBOSSOFF.Size = UDim2.new(0, 42, 0, 12)
+AUTOBOSSOFF.Position = UDim2.new(0.79,0,1.137,0)
+AUTOBOSSOFF.Text = "OFF"
+AUTOBOSSOFF.Visible = false
+
+AUTOPRESTIGELABEL.Parent = FRAME
+AUTOPRESTIGELABEL.Name = "AUTOPRESTIGELABEL"
+AUTOPRESTIGELABEL.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPRESTIGELABEL.BorderSizePixel = 0
+AUTOPRESTIGELABEL.BackgroundTransparency = 0
+AUTOPRESTIGELABEL.Font = Enum.Font.SourceSansLight
+AUTOPRESTIGELABEL.TextSize = 12
+AUTOPRESTIGELABEL.Size = UDim2.new(0, 158, 0, 12)
+AUTOPRESTIGELABEL.Position = UDim2.new(0,0,1.240,0)
+AUTOPRESTIGELABEL.Text = "AUTO PRESTIGE"
+
+AUTOPRESTIGEON.Parent = FRAME
+AUTOPRESTIGEON.Name = "AUTOPRESTIGEON"
+AUTOPRESTIGEON.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPRESTIGEON.BorderSizePixel = 0
+AUTOPRESTIGEON.BackgroundTransparency = 0
+AUTOPRESTIGEON.Font = Enum.Font.SourceSansSemibold
+AUTOPRESTIGEON.TextSize = 12
+AUTOPRESTIGEON.Size = UDim2.new(0, 42, 0, 12)
+AUTOPRESTIGEON.Position = UDim2.new(0.79,0,1.240,0)
+AUTOPRESTIGEON.Text = "ON"
+AUTOPRESTIGEON.Visible = false
+
+AUTOPRESTIGEOFF.Parent = FRAME
+AUTOPRESTIGEOFF.Name = "AUTOPRESTIGEOFF"
+AUTOPRESTIGEOFF.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPRESTIGEOFF.BorderSizePixel = 0
+AUTOPRESTIGEOFF.BackgroundTransparency = 0
+AUTOPRESTIGEOFF.Font = Enum.Font.SourceSansSemibold
+AUTOPRESTIGEOFF.TextSize = 12
+AUTOPRESTIGEOFF.Size = UDim2.new(0, 42, 0, 12)
+AUTOPRESTIGEOFF.Position = UDim2.new(0.79,0,1.240,0)
+AUTOPRESTIGEOFF.Text = "OFF"
+AUTOPRESTIGEOFF.Visible = false
+
+AUTOPKLABEL.Parent = FRAME
+AUTOPKLABEL.Name = "AUTOPKLABEL"
+AUTOPKLABEL.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPKLABEL.BorderSizePixel = 0
+AUTOPKLABEL.BackgroundTransparency = 0
+AUTOPKLABEL.Font = Enum.Font.SourceSansLight
+AUTOPKLABEL.TextSize = 12
+AUTOPKLABEL.Size = UDim2.new(0, 158, 0, 12)
+AUTOPKLABEL.Position = UDim2.new(0,0,1.353,0)
+AUTOPKLABEL.Text = "AUTO PK ALL"
+
+AUTOPKON.Parent = FRAME
+AUTOPKON.Name = "AUTOPK"
+AUTOPKON.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPKON.BorderSizePixel = 0
+AUTOPKON.BackgroundTransparency = 0
+AUTOPKON.Font = Enum.Font.SourceSansSemibold
+AUTOPKON.TextSize = 12
+AUTOPKON.Size = UDim2.new(0, 42, 0, 12)
+AUTOPKON.Position = UDim2.new(0.79,0,1.353,0)
+AUTOPKON.Text = "ON"
+AUTOPKON.Visible = false
+
+AUTOPKOFF.Parent = FRAME
+AUTOPKOFF.Name = "AUTOPKOFF"
+AUTOPKOFF.BackgroundColor3 = Color3.new(255,255,255)
+AUTOPKOFF.BorderSizePixel = 0
+AUTOPKOFF.BackgroundTransparency = 0
+AUTOPKOFF.Font = Enum.Font.SourceSansSemibold
+AUTOPKOFF.TextSize = 12
+AUTOPKOFF.Size = UDim2.new(0, 42, 0, 12)
+AUTOPKOFF.Position = UDim2.new(0.79,0,1.353,0)
+AUTOPKOFF.Text = "OFF"
+AUTOPKOFF.Visible = false
+
+CASH2.Parent = QUESTFRAME
+CASH2.Name = "CASH2"
+CASH2.BackgroundColor3 = Color3.new(255,255,255)
+CASH2.BorderSizePixel = 0
+CASH2.Position = UDim2.new(0, 121, 0, 10)
+CASH2.Size = UDim2.new(0, 35, 0, 10)
+CASH2.Font = Enum.Font.SourceSansLight
+CASH2.Text = "5000"
+CASH2.TextSize = 10
+CASH2.TextStrokeTransparency = 1
+
+CASH1.Parent = QUESTFRAME
+CASH1.Name = "CASH1"
+CASH1.BackgroundColor3 = Color3.new(255,255,255)
+CASH1.BorderSizePixel = 0
+CASH1.Position = UDim2.new(0, 121, 0, 0)
+CASH1.Size = UDim2.new(0, 35, 0, 10)
+CASH1.Font = Enum.Font.SourceSansLight
+CASH1.Text = "1000"
+CASH1.TextSize = 10
+CASH1.TextStrokeTransparency = 1
+
+EXPERIENCE1.Parent = QUESTFRAME
+EXPERIENCE1.Name = "EXPERIENCE1"
+EXPERIENCE1.BackgroundColor3 = Color3.new(255,255,255)
+EXPERIENCE1.BorderSizePixel = 0
+EXPERIENCE1.Position = UDim2.new(0, 100, 0, 0)
+EXPERIENCE1.Size = UDim2.new(0, 21, 0, 10)
+EXPERIENCE1.Font = Enum.Font.SourceSansLight
+EXPERIENCE1.Text = "500"
+EXPERIENCE1.TextSize = 10
+EXPERIENCE1.TextStrokeTransparency = 1
+
+EXPERIENCE2.Parent = QUESTFRAME
+EXPERIENCE2.Name = "EXPERIENCE2"
+EXPERIENCE2.BackgroundColor3 = Color3.new(255,255,255)
+EXPERIENCE2.BorderSizePixel = 0
+EXPERIENCE2.Position = UDim2.new(0, 100, 0, 10)
+EXPERIENCE2.Size = UDim2.new(0, 21, 0, 10)
+EXPERIENCE2.Font = Enum.Font.SourceSansLight
+EXPERIENCE2.Text = "2500"
+EXPERIENCE2.TextSize = 10
+EXPERIENCE2.TextStrokeTransparency = 1
+
+HEALTH1.Parent = QUESTFRAME
+HEALTH1.Name = "HEALTH1"
+HEALTH1.BackgroundColor3 = Color3.new(255,255,255)
+HEALTH1.BorderSizePixel = 0
+HEALTH1.Position = UDim2.new(0, 156, 0, 0)
+HEALTH1.Size = UDim2.new(0, 30, 0, 10)
+HEALTH1.Font = Enum.Font.SourceSansLight
+HEALTH1.Text = "1000"
+HEALTH1.TextSize = 10
+HEALTH1.TextStrokeTransparency = 1
+
+HEALTH2.Parent = QUESTFRAME
+HEALTH2.Name = "HEALTH2"
+HEALTH2.BackgroundColor3 = Color3.new(255,255,255)
+HEALTH2.BorderSizePixel = 0
+HEALTH2.Position = UDim2.new(0, 156, 0, 10)
+HEALTH2.Size = UDim2.new(0, 30, 0, 10)
+HEALTH2.Font = Enum.Font.SourceSansLight
+HEALTH2.Text = "5000"
+HEALTH2.TextSize = 10
+HEALTH2.TextStrokeTransparency = 1
+
+QUEST1.Parent = QUESTFRAME
+QUEST1.Name = "QUEST1"
+QUEST1.BackgroundColor3 = Color3.new(255,255,255)
+QUEST1.BorderSizePixel = 0
+QUEST1.Position = UDim2.new(0, 0, 0, 0)
+QUEST1.Size = UDim2.new(0, 100, 0, 10)
+QUEST1.Font = Enum.Font.SourceSansLight
+QUEST1.Text = "MadThugQuest"
+QUEST1.TextSize = 10
+QUEST1.TextStrokeTransparency = 1
+
+QUEST2.Parent = QUESTFRAME
+QUEST2.Name = "QUEST2"
+QUEST2.BackgroundColor3 = Color3.new(255,255,255)
+QUEST2.BorderSizePixel = 0
+QUEST2.Position = UDim2.new(0, 0, 0.026, 0)
+QUEST2.Size = UDim2.new(0, 100, 0, 10)
+QUEST2.Font = Enum.Font.SourceSansLight
+QUEST2.Text = "MafiaHenchmanQuest"
+QUEST2.TextSize = 10
+QUEST2.TextStrokeTransparency = 1
+
+HEALTHSTAT.Parent = STATFRAME
+HEALTHSTAT.Name = "HEALTHSTAT"
+HEALTHSTAT.BackgroundColor3 = Color3.new(255,255,255)
+HEALTHSTAT.BorderSizePixel = 0
+HEALTHSTAT.Position = UDim2.new(0, 50, 0, 29)
+HEALTHSTAT.Size = UDim2.new(0, 140, 0, 10)
+HEALTHSTAT.Font = Enum.Font.SourceSansLight
+HEALTHSTAT.Text = "0"
+HEALTHSTAT.TextStrokeTransparency = 1
+HEALTHSTAT.TextSize = 10
+
+STRENGTHSTAT.Parent = STATFRAME
+STRENGTHSTAT.Name = "STRENGTHSTAT"
+STRENGTHSTAT.BackgroundColor3 = Color3.new(255,255,255)
+STRENGTHSTAT.BorderSizePixel = 0
+STRENGTHSTAT.Position = UDim2.new(0, 50, 0, 20)
+STRENGTHSTAT.Size = UDim2.new(0, 140, 0, 10)
+STRENGTHSTAT.Font = Enum.Font.SourceSansLight
+STRENGTHSTAT.Text = "0"
+STRENGTHSTAT.TextStrokeTransparency = 1
+STRENGTHSTAT.TextSize = 10
+
+LEVELSTAT.Parent = STATFRAME
+LEVELSTAT.Name = "LEVELSTAT"
+LEVELSTAT.BackgroundColor3 = Color3.new(255,255,255)
+LEVELSTAT.BorderSizePixel = 0
+LEVELSTAT.Position = UDim2.new(0, 50, 0, 0)
+LEVELSTAT.Size = UDim2.new(0, 140, 0, 10)
+LEVELSTAT.Font = Enum.Font.SourceSansLight
+LEVELSTAT.Text = "0"
+LEVELSTAT.TextStrokeTransparency = 1
+LEVELSTAT.TextSize = 10
+
+SOULSSTAT.Parent = STATFRAME
+SOULSSTAT.Name = "SOULSSTAT"
+SOULSSTAT.BackgroundColor3 = Color3.new(255,255,255)
+SOULSSTAT.BorderSizePixel = 0
+SOULSSTAT.Position = UDim2.new(0, 50, 0, 39)
+SOULSSTAT.Size = UDim2.new(0, 140, 0, 10)
+SOULSSTAT.Font = Enum.Font.SourceSansLight
+SOULSSTAT.Text = "0"
+SOULSSTAT.TextStrokeTransparency = 1
+SOULSSTAT.TextSize = 10
+
+CASHSTAT.Parent = STATFRAME
+CASHSTAT.Name = "CASHSTAT"
+CASHSTAT.BackgroundColor3 = Color3.new(255,255,255)
+CASHSTAT.BorderSizePixel = 0
+CASHSTAT.Position = UDim2.new(0, 50, 0, 10)
+CASHSTAT.Size = UDim2.new(0, 140, 0, 10)
+CASHSTAT.Font = Enum.Font.SourceSansLight
+CASHSTAT.Text = "0"
+CASHSTAT.TextStrokeTransparency = 1
+CASHSTAT.TextSize = 10
+
+POINTSSTAT.Parent = STATFRAME
+POINTSSTAT.Name = "POINTSSTAT"
+POINTSSTAT.BackgroundColor3 = Color3.new(255,255,255)
+POINTSSTAT.BorderSizePixel = 0
+POINTSSTAT.Position = UDim2.new(0, 50, 0, 49)
+POINTSSTAT.Size = UDim2.new(0, 140, 0, 10)
+POINTSSTAT.Font = Enum.Font.SourceSansLight
+POINTSSTAT.Text = "0"
+POINTSSTAT.TextStrokeTransparency = 1
+POINTSSTAT.TextSize = 10
+
+LEVELLABEL.Parent = STATFRAME
+LEVELLABEL.Name = "LEVELLABEL"
+LEVELLABEL.BackgroundColor3 = Color3.new(255,255,255)
+LEVELLABEL.BorderSizePixel = 0
+LEVELLABEL.Position = UDim2.new(0.005, 0, 0, 0)
+LEVELLABEL.Size = UDim2.new(0, 50, 0, 10)
+LEVELLABEL.Font = Enum.Font.SourceSansLight
+LEVELLABEL.Text = "LEVEL"
+LEVELLABEL.TextSize = 10
+LEVELLABEL.TextStrokeTransparency = 1
+
+POINTSLABEL.Parent = STATFRAME
+POINTSLABEL.Name = "POINTSLABEL"
+POINTSLABEL.BackgroundColor3 = Color3.new(255,255,255)
+POINTSLABEL.BorderSizePixel = 0
+POINTSLABEL.Position = UDim2.new(0, 1, 0, 49)
+POINTSLABEL.Size = UDim2.new(0, 50, 0, 10)
+POINTSLABEL.Font = Enum.Font.SourceSansLight
+POINTSLABEL.Text = "POINTS"
+POINTSLABEL.TextSize = 10
+POINTSLABEL.TextStrokeTransparency = 1
+
+HEALTHLABEL.Parent = STATFRAME
+HEALTHLABEL.Name = "HEALTHLABEL"
+HEALTHLABEL.BackgroundColor3 = Color3.new(255,255,255)
+HEALTHLABEL.BorderSizePixel = 0
+HEALTHLABEL.Position = UDim2.new(0, 1, 0, 29)
+HEALTHLABEL.Size = UDim2.new(0, 50, 0, 10)
+HEALTHLABEL.Font = Enum.Font.SourceSansLight
+HEALTHLABEL.Text = "HEALTH"
+HEALTHLABEL.TextSize = 10
+HEALTHLABEL.TextStrokeTransparency = 1
+
+CASHLABEL.Parent = STATFRAME
+CASHLABEL.Name = "CASHLABEL"
+CASHLABEL.BackgroundColor3 = Color3.new(255,255,255)
+CASHLABEL.BorderSizePixel = 0
+CASHLABEL.Position = UDim2.new(0, 1, 0, 10)
+CASHLABEL.Size = UDim2.new(0, 50, 0, 10)
+CASHLABEL.Font = Enum.Font.SourceSansLight
+CASHLABEL.Text = "CASH"
+CASHLABEL.TextSize = 10
+CASHLABEL.TextStrokeTransparency = 1
+
+SOULLABEL.Parent = STATFRAME
+SOULLABEL.Name = "SOULLABEL"
+SOULLABEL.BackgroundColor3 = Color3.new(255,255,255)
+SOULLABEL.BorderSizePixel = 0
+SOULLABEL.Position = UDim2.new(0, 1, 0, 39)
+SOULLABEL.Size = UDim2.new(0, 50, 0, 10)
+SOULLABEL.Font = Enum.Font.SourceSansLight
+SOULLABEL.Text = "SOULS"
+SOULLABEL.TextSize = 10
+SOULLABEL.TextStrokeTransparency = 1
+
+STRENGTHLABEL.Parent = STATFRAME
+STRENGTHLABEL.Name = "STRENGTHLABEL"
+STRENGTHLABEL.BackgroundColor3 = Color3.new(255,255,255)
+STRENGTHLABEL.BorderSizePixel = 0
+STRENGTHLABEL.Position = UDim2.new(0, 1, 0, 20)
+STRENGTHLABEL.Size = UDim2.new(0, 50, 0, 10)
+STRENGTHLABEL.Font = Enum.Font.SourceSansLight
+STRENGTHLABEL.Text = "STRENGTH"
+STRENGTHLABEL.TextSize = 10
+STRENGTHLABEL.TextStrokeTransparency = 1
+
+--[[
+	Main Functions
+--]]
+
+local newpart = Instance.new("Part")
+newpart.Parent = game.Workspace
+newpart.Name = "Base"
+newpart.Anchored = true
+newpart.Position = Vector3.new(0,1500,0)
+newpart.Size = Vector3.new(2000,0.1,2000)
+newpart.Transparency = 0.9
+
+local Quests = {
+	[1] = "MadThugQuest",
+	[2] = "ThugBossQuest",
+	[3] = "MafiaHenchmanQuest"
+}
+
+local farm = false
+local toggle = true
+local autoboss = false
+local autopoint = false
+local autoprestige = true
+local autopkall = false
+local event = game.ReplicatedStorage.Events.DemonWeaponDamage
+local healthfix = game.ReplicatedStorage.Events.HealthFix
+local prestige = game:GetService("ReplicatedStorage").Events.Prestige
+local addpoint = game:GetService("ReplicatedStorage").Events.AddingPointsE
+local player = game.Players.LocalPlayer
+local stat = player.Stats
+local quest = player.Stats.Quest
+local questtype = Quests[1]
+local Class
+local Classes = {
+	[1] = "Meister",
+	[2] = "Demon Weapon"
+}
+
+if stat.Class.Value == 1 then
+	Class = Classes[1]
+else
+	Class = Classes[2]
+end
+
+local questaccept = function()
+	local event = game.ReplicatedStorage.Events.QuestAccept
+	event:FireServer(questtype)
+end
+
+TURNON.MouseButton1Down:connect(function()
+	farm = true
+    TURNON.Visible = false
+	TURNOFF.Visible = true
+end)
+TURNOFF.MouseButton1Down:connect(function()
+	farm = false
+	TURNOFF.Visible = false
+    TURNON.Visible = true
+end)
+AUTOPOINTON.MouseButton1Down:connect(function()
+	autopoint = false
+	AUTOPOINTON.Visible = false
+    AUTOPOINTOFF.Visible = true
+end)
+AUTOPOINTOFF.MouseButton1Down:connect(function()
+	autopoint = true
+	AUTOPOINTOFF.Visible = false
+	AUTOPOINTON.Visible = true
+end)
+AUTOBOSSON.MouseButton1Down:connect(function()
+	autoboss = false
+	questtype = Quests[3]
+	AUTOBOSSON.Visible = false
+    AUTOBOSSOFF.Visible = true
+end)
+AUTOBOSSOFF.MouseButton1Down:connect(function()
+	autoboss = true
+	questtype = Quests[2]
+	AUTOBOSSOFF.Visible = false
+	AUTOBOSSON.Visible = true
+end)
+AUTOPRESTIGEON.MouseButton1Down:connect(function()
+	autoprestige = false
+	AUTOPRESTIGEON.Visible = false
+    AUTOPRESTIGEOFF.Visible = true
+end)
+AUTOPRESTIGEOFF.MouseButton1Down:connect(function()
+	autoprestige = true
+	AUTOPRESTIGEOFF.Visible = false
+	AUTOPRESTIGEON.Visible = true
+end)
+AUTOPKON.MouseButton1Down:connect(function()
+	autopkall = false
+	AUTOPKON.Visible = false
+    AUTOBOSSOFF.Visible = true
+end)
+AUTOPKOFF.MouseButton1Down:connect(function()
+	autopkall = true
+	AUTOPKOFF.Visible = false
+	AUTOPKON.Visible = true
+end)
+QUEST1.MouseButton1Down:connect(function()
+    CURRENTQUEST.Text = "CURRENT QUEST : "..Quests[1]
+    questtype = Quests[1]
+end)
+QUEST2.MouseButton1Down:connect(function()
+    CURRENTQUEST.Text = "CURRENT QUEST : "..Quests[3]
+   	questtype = Quests[3]
+end)
+
+function check()
+	if farm == true then
+		TURNON.Visible = false
+		TURNOFF.Visible = true
+	else
+		TURNON.Visible = true
+		TURNOFF.Visible = false
+	end
+	if autopoint == true then
+		AUTOPOINTON.Visible = true
+		AUTOPOINTOFF.Visible = false
+	else
+		AUTOPOINTON.Visible = false
+		AUTOPOINTOFF.Visible = true
+	end
+	if autoboss == true then
+		AUTOBOSSON.Visible = true
+		AUTOBOSSOFF.Visible = false
+	else
+		AUTOBOSSON.Visible = false
+		AUTOBOSSOFF.Visible = true
+	end
+	if autoprestige == true then
+		AUTOPRESTIGEON.Visible = true
+		AUTOPRESTIGEOFF.Visible = false
+	else
+		AUTOPRESTIGEON.Visible = false
+		AUTOPRESTIGEOFF.Visible = true
+	end
+	if autopkall == true then
+		farm = false
+		event:FireServer(math.random(3))
+		healthfix:FireServer()
+		for k, v in next, game.Players:GetChildren() do
+			local char = player.Character.HumanoidRootPart
+			char.CFrame = newpart.CFrame + Vector3.new(0,3,0)
+			if v.Character then
+				if v.Character:FindFirstChild("ForceField") then
+					print(v.Name.."  currently has forcefield activated.")
+				end
+				if v.Character:FindFirstChild("Humanoid") then
+					if v.Character.Humanoid.Health == 0 then
+						v.Character:Destroy()
+						warn("You killed: "..v.Name)
+					end
+					if v.Name == player.Name then
+						char.CFrame = newpart.CFrame + Vector3.new(0,3,0)
+					elseif v.Name ~= player.Name then
+						if game.Workspace:FindFirstChild(v.Name) then
+						game.Workspace:FindFirstChild(v.Name):FindFirstChild("HumanoidRootPart").CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0,0,-3.5)
+						end
+					end
+				end
+			end
+		end
+		AUTOPKON.Visible = true
+		AUTOPKOFF.Visible = false
+	else
+		AUTOPKON.Visible = false
+		AUTOPKOFF.Visible = true
+	end
+	if autopoint then
+		addpoint:FireServer("strength")
+	end
+	if farm then
+		local char = player.Character.HumanoidRootPart
+		char.CFrame = newpart.CFrame + Vector3.new(0,3,0)
+		if questtype == Quests[1] then
+			local Mob = game.Workspace:FindFirstChild("Mad Thug")
+			if Mob then
+					warn("Found Mob: "..Mob.Name)
+					Mob.HumanoidRootPart.Anchored = true
+					Mob.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0,0,-4)
+					event:FireServer(math.random(3))
+					healthfix:FireServer()
+				if Mob:FindFirstChild("Humanoid") then
+					if Mob.Humanoid.Health == 0 then
+						Mob:Destroy()
+					end
+				end
+			else
+				warn("No Mobs: Mad Thug")
+			end
+		elseif questtype == Quests[2] then
+			local Mob
+			local Mob1
+				if game.Workspace:FindFirstChild("ThugBoss") then
+					event:FireServer(math.random(3))
+					healthfix:FireServer()
+					Mob = game.Workspace:FindFirstChild("ThugBoss")
+					Mob.HumanoidRootPart.Anchored = true
+					Mob.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0,0,-4)
+					if Mob:FindFirstChild("Humanoid") then
+						if Mob.Humanoid.Health == 0 then
+							Mob:Destroy()
+						end
+					end
+				else
+					Mob = Mob1
+					questtype = Quests[3]
+				end
+			elseif questtype == Quests[3] then
+				local Mob
+				if game.Workspace.City:FindFirstChild("Mafia Henchman") then
+					event:FireServer(math.random(3))
+					healthfix:FireServer()
+					Mob = game.Workspace.City:FindFirstChild("Mafia Henchman")
+					Mob.HumanoidRootPart.Anchored = true
+					Mob.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0,0,-4)
+					if Mob:FindFirstChild("Humanoid") then
+						if Mob.Humanoid.Health == 0 then
+							Mob:Destroy()
+						end
+					end
+				elseif game.Workspace:FindFirstChild("MafiaHenchman1") or game.Workspace:FindFirstChild("MafiaHenchman2") or game.Workspace:FindFirstChild("MafiaHenchman3") or game.Workspace:FindFirstChild("MafiaHenchman4") or game.Workspace:FindFirstChild("MafiaHenchman5") then
+					event:FireServer(math.random(3))
+					healthfix:FireServer()
+					Mob = game.Workspace:FindFirstChild("MafiaHenchman1") or game.Workspace:FindFirstChild("MafiaHenchman2") or game.Workspace:FindFirstChild("MafiaHenchman3") or game.Workspace:FindFirstChild("MafiaHenchman4") or game.Workspace:FindFirstChild("MafiaHenchman5")
+					warn("Found Mob"..Mob.Name)
+					Mob.HumanoidRootPart.Anchored = true
+					Mob.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0,0,-4)
+					if Mob:FindFirstChild("Humanoid") then
+						if Mob.Humanoid.Health == 0 then
+							Mob:Destroy()
+						end
+					end
+					else
+					warn("No Mobs: MafiaHenchman")
+				end
+			end
+		end
+	if farm == true then
+		print("Auto farm is on.")
+			if quest.Value == questtype then
+				print("Quest found.")
+			elseif quest.Value ~= questtype then
+				questaccept()
+			end
+			elseif farm == false then
+				if autopkall == false then
+				print("Auto farm is off.")
+			end
+		end
+	if autoprestige == true then
+		if stat.Stars.Value == 0 then
+			if stat.Levels.Value == 100 then
+				prestige:FireServer()
+			end
+		elseif stat.Stars.Value == 1 then
+			if stat.Levels.Value == 200 then
+				prestige:FireServer()
+			end
+		elseif stat.Stars.Value == 2 then
+			if stat.Levels.Value == 300 then
+				prestige:FireServer()
+			end
+		end
+	end
+	STATUS.Text = "AUTO QUEST STATUS : "..tostring(farm)
+	CLASS.Text = "CURRENT CLASS : "..Class
+	CURRENTQUEST.Text = "CURRENT QUEST : "..questtype
+	LEVELSTAT.Text = stat.Levels.Value
+	SOULSSTAT.Text = stat.Soul.Value
+	HEALTHSTAT.Text = stat.Health.Value
+	STRENGTHSTAT.Text = stat.Strength.Value
+	CASHSTAT.Text = stat.Cash.Value
+	POINTSSTAT.Text = stat.TrainingPoints.Value
+	if farm == true then
+		if autoboss == true then
+			if game.Workspace:FindFirstChild("ThugBoss") then
+				print("Boss has spawned.")
+				questtype = Quests[2]
+			else
+			print("Boss has not spawned.")
+			questtype = Quests[3]
+		end
+			else
+			print("Auto boss farm is disabled.")
+		end
+	end
+end
+
+coroutine.resume(coroutine.create(function()
+	game:GetService("RunService").RenderStepped:connect(function()
+		check()
+	end)
+end))
+
+--[[
+	Closing/Opening
+--]]
+
+function onKeyPress(actionName, userInputState, inputObject)
+    if userInputState == Enum.UserInputState.Begin then
+        print("Left Control was pressed")
+        if toggle == false then
+             toggle = true
+            wait(.5)
+            FRAME.Visible = true
+            FRAME:TweenPosition(UDim2.new(0.5,-100,0.5,-75))
+        else
+            toggle = false
+            wait(.5)
+            FRAME:TweenPosition(UDim2.new(FRAME.Position) + UDim2.new(FRAME.Position.X,3,0))
+            wait(1)
+            FRAME.Position = UDim2.new(-1,-100,0.5,-75)
+            FRAME.Visible = false
+        end
+    end
+end
+game.ContextActionService:BindAction("keyPress", onKeyPress, false, Enum.KeyCode.LeftShift)

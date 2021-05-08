@@ -1,0 +1,10 @@
+for i,v in pairs(workspace.Tycoons[game.Players.LocalPlayer.Name.."'s Tycoon"].PurchasedObjects:GetDescendants()) do
+	if v:IsA("ClickDetector") then
+		spawn(function()
+			while true do
+				fireclickdetector(v, 1)
+				game:GetService("RunService").RenderStepped:wait()
+			end
+		end)
+	end
+end

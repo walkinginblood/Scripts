@@ -1,0 +1,53 @@
+-- Settings
+_G.Farm = "Funds" -- Cash | Funds
+_G.Enabled = true; -- Toggle On/Off
+
+-- Variable
+local player = game.Players.LocalPlayer
+
+-- Function
+local function hospital()
+	for i,v in pairs(workspace.Sites:GetChildren()) do
+		if string.find(v.Sign.Sign.TextLabel.Text:lower(), player.Name:lower()) then
+			return v
+		end
+	end
+end
+
+-- Loop
+while _G.Enabled do
+	-- Collect
+	repeat
+		local stff = workspace.City:GetDescendants()
+		for i = 1, #stff do local v = stff[i]
+			if v:IsA("UnionOperation") and v:FindFirstChild("StackScript") and v:FindFirstChild("TouchInterest") then
+				repeat
+					pcall(function()
+						player.Character.HumanoidRootPart.CFrame = v.CFrame
+					end)
+					wait()
+				until v == nil or v.Parent == nil or pcall(function()a=player.Character.BriefCase.Part.FillGui.Text;end) and string.split(player.Character.BriefCase.Part.FillGui.Text.Text, " / ")[1] == string.split(player.Character.BriefCase.Part.FillGui.Text.Text, " / ")[2]
+			end
+		end
+		wait(0.25)
+	until pcall(function()a=player.Character.BriefCase.Part.FillGui.Text;end) and string.split(player.Character.BriefCase.Part.FillGui.Text.Text, " / ")[1] == string.split(player.Character.BriefCase.Part.FillGui.Text.Text, " / ")[2]
+	-- Yeet
+	if _G.Farm == "Cash" then
+		pcall(function()
+			player.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(0, 1000, 0)
+		end)
+		for i = 1, 20 do
+			game.ReplicatedStorage.Ragdoll:FireServer(workspace.Vehicles:FindFirstChildOfClass("Model"))
+			wait(0.25)
+		end
+		repeat wait() until player.Character and not player.Character:FindFirstChild("Ragdolled")
+	else
+		repeat
+			pcall(function()
+				player.Character.HumanoidRootPart.CFrame = hospital().Staff.Receptionist.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3)
+			end)
+			wait()
+		until pcall(function()a=player.Character.BriefCase.Part.FillGui.Text;end) and string.split(player.Character.BriefCase.Part.FillGui.Text.Text, " / ")[1] == "0"
+	end
+	wait(0.25)
+end
